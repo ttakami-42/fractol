@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:17:02 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 14:23:07 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 15:54:08 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	expose_hook(t_fractol *f)
 
 int	mouse_hook(int mousecode, int x, int y, t_fractol *f)
 {
-	UNUSED(x);
-	UNUSED(y);
+	(void) x;
+	(void) y;
 	if (mousecode == 4)
 		zoom_in(f);
 	else if (mousecode == 5)

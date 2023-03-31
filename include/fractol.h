@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 14:24:30 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 15:53:15 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,20 @@
 # define TYPE_JULIA 1
 # define USAGE_LINE1 "usage: ./fractol <name> | Mandelbrot | Julia |"
 # define USAGE_LINE2 "if you want to create other julia set..."
-# define USAGE_LINE3 "change COMPLEX_R and COMPLEX_I value in fractol.h, just compile it!"
-# define ERR_MSG "invalid arguments."
-# define UNUSED(x) ((void)x)
+# define USAGE_LINE3 "change COMPLEX_R and COMPLEX_I value in fractol.h"
+# define ERR_MSG "invalid arguments!"
 # define COMPLEX_R -0.3
 # define COMPLEX_I -0.63
 # define IMAX 400
 # define LIMIT 4.0
 
-typedef struct	s_complex_number
+typedef struct s_complex_number
 {
 	double	real;
 	double	imag;
 }	t_complex;
 
-typedef struct	s_fractol_asset
+typedef struct s_fractol_asset
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
