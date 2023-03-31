@@ -14,9 +14,8 @@
 
 void	set_mlx_hooks(t_fractol *f)
 {
+	mlx_hook(f->win_ptr, 17, 1L << 2, deinit_fractol, f);
 	mlx_expose_hook(f->win_ptr, expose_hook, f);
 	mlx_key_hook(f->win_ptr, key_hook, f);
 	mlx_mouse_hook(f->win_ptr, mouse_hook, f);
-	mlx_hook(f->win_ptr, 17, 1L << 2, deinit_fractol, f);
-	mlx_hook(f->win_ptr, 33, 1L << 17, deinit_fractol, f);
 }
