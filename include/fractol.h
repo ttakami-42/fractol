@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 06:08:43 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 12:48:25 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define UNUSED(x) ((void)x)
 # define COMPLEX_R -0.3
 # define COMPLEX_I -0.63
+# define IMAX 400
+# define CONVERGENCE 4.0
 
 typedef struct	s_complex_number
 {

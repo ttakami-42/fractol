@@ -12,8 +12,8 @@
 
 #include "fractol.h"
 
-static int	mandelbrot(t_complex c, int max);
-static int	julia(t_complex z, t_complex c, int max);
+static int	mandelbrot(t_complex c, int imax);
+static int	julia(t_complex z, t_complex c, int imax);
 
 void	draw_mandelbrot(t_fractol *f)
 {
@@ -32,7 +32,7 @@ void	draw_mandelbrot(t_fractol *f)
 		{
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
-			value = mandelbrot(complex_num, 100);
+			value = mandelbrot(complex_num, IMAX);
 			pixel_put(value, f, x, y);
 			y++;
 		}
@@ -58,7 +58,7 @@ void	draw_julia(t_fractol *f)
 		{
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
-			value = julia(complex_num, f->args, 100);
+			value = julia(complex_num, f->args, IMAX);
 			pixel_put(value, f, x, y);
 			y++;
 		}
@@ -67,7 +67,7 @@ void	draw_julia(t_fractol *f)
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 }
 
-static int	mandelbrot(t_complex c, int max)
+static int	mandelbrot(t_complex c, int imax)
 {
 	t_complex	z;
 	int			i;
@@ -75,27 +75,27 @@ static int	mandelbrot(t_complex c, int max)
 	z.real = 0.0;
 	z.imag = 0.0;
 	i = 0;
-	while (i < max)
+	while (i < imax)
 	{
 		z = sum_complex(mul_complex(z, z), c);
 		if (abs_complex(z) > 4.0)
 			return (i);
 		i++;
 	}
-	return (max);
+	return (imax);
 }
 
-static int	julia(t_complex z, t_complex c, int max)
+static int	julia(t_complex z, t_complex c, int imax)
 {
 	int	i;
 
 	i = 0;
-	while (i < max)
+	while (i < imax)
 	{
 		z = sum_complex(mul_complex(z, z), c);
 		if (abs_complex(z) > 4.0)
 			return (i);
 		i++;
 	}
-	return (max);
+	return (imax);
 }

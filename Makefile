@@ -6,15 +6,22 @@
 #    By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:46:07 by ttakami           #+#    #+#              #
-#    Updated: 2023/03/31 06:28:57 by ttakami          ###   ########.fr        #
+#    Updated: 2023/03/31 12:28:34 by ttakami          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fractol
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
-DEBUG		= -g -fsanitize=address -fsanitize=undefined
-LEAK		= -g -fsanitize=leak
+
+ifdef WITH_DEBUG
+	CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=address -fsanitize=undefined
+endif
+
+ifdef WITH_LEAK
+	CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=leak
+endif
+
 SRCS		=   main.c \
 				utils.c \
 				validate_args.c \
@@ -26,7 +33,7 @@ SRCS		=   main.c \
 OBJDIR		= obj
 OBJS		= $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFTDIR	= libft
-LIBFT		= -lft
+LIBFT		= $(addprefix $(LIBFTDIR)/, libft.a)
 MLXDIR		= minilibx-linux
 INC			= -Iinclude -I$(LIBFTDIR) -I$(MLXDIR)
 
@@ -35,10 +42,10 @@ UNAME 		= $(shell uname -s)
 ifeq ($(UNAME), Darwin)
 	INC		+= -I/usr/X11/include
 	MLX		=-lmlx_Darwin
-	MLXFLAG	= -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit -L$(MLXDIR)
+	MLXFLAG	= -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
 	MLX		= -lmlx
-	MLXFLAG	= -L/usr/lib -lXext -lX11 -lm -L$(MLXDIR)
+	MLXFLAG	= -L/usr/lib -lXext -lX11 -lm
 endif
 
 # color codes
@@ -58,12 +65,9 @@ $(OBJDIR)/%.o: %.c
 $(LIBFT):
 	@make bonus --no-print-directory -sC $(LIBFTDIR)
 
-$(MLX):
-	@make --no-print-directory -C $(MLXDIR)
-
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	@echo "$(YELLOW)\n      - Building $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) $(LIBFT) $(MLXFLAG) $(MLX)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) -L$(MLXDIR) $(MLX) $(MLXFLAG)
 	@echo "$(GREEN)***   Project $(NAME) successfully compiled   ***\n$(RESET)"
 
 clean:
@@ -80,13 +84,13 @@ fclean: clean
 
 re: fclean all
 
-debug: $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(DEBUG) -o $(NAME) $(OBJS) -L$(LIBFTDIR) $(LIBFT)
-	@echo "$(GREEN)***   You can debug $(NAME)   ...   ***\n$(RESET)"
+debug: fclean
+	@make --no-print-directory WITH_DEBUG=1
+	@echo "$(GREEN)***   You can debug $(NAME)   ***\n$(RESET)"
 
-leak: $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(LEAK) -o $(NAME) $(OBJS) -L$(LIBFTDIR) $(LIBFT)
-	@echo "$(GREEN)***   You can see leaks $(NAME)   ...   ***\n$(RESET)"
+leak: fclean
+	@make --no-print-directory WITH_LEAK=1
+	@echo "$(GREEN)***   You can see leaks $(NAME)   ***\n$(RESET)"
 
 .PHONY:	all clean fclean re debug leak
 
