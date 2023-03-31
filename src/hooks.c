@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:17:02 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 15:54:08 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 16:00:59 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ int	mouse_hook(int mousecode, int x, int y, t_fractol *f)
 
 static void	zoom_in(t_fractol *f)
 {
-	f->start_x += 0.07;
-	f->start_y -= 0.07;
-	f->end_x -= 0.07;
-	f->end_y += 0.07;
+	f->start_x += 0.03;
+	f->start_y -= 0.03;
+	f->end_x -= 0.03;
+	f->end_y += 0.03;
 }
 
 static void	zoom_out(t_fractol *f)
 {
-	f->start_x -= 0.07;
-	f->start_y += 0.07;
-	f->end_x += 0.07;
-	f->end_y -= 0.07;
+	f->start_x -= 0.03;
+	f->start_y += 0.03;
+	f->end_x += 0.03;
+	f->end_y -= 0.03;
 }
