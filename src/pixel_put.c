@@ -34,19 +34,7 @@ void	pixel_put(int value, t_fractol *f, int x, int y)
 	else if (value >= 24)
 		color = create_trgb(64, n / 2, n, 0);
 	else if (value >= 16)
-		color = create_trgb(128, 234, 178, 102);
-	else if (value >= 8)
-		color = create_trgb(128, 237, 178, 102);
-	else if (value >= 5)
-		color = create_trgb(128, 240, 178, 102);
-	else if (value >= 4)
-		color = create_trgb(128, 243, 178, 102);
-	else if (value >= 3)
-		color = create_trgb(128, 246, 178, 102);
-	else if (value >= 2)
-		color = create_trgb(128, 249, 178, 102);
-	else if (value >= 1)
-		color = create_trgb(128, 252, 178, 102);
+		color = create_trgb(128, 250, 178, 102);
 	else 
 		color = create_trgb(128, 255, 178, 102);
 	my_mlx_pixel_put(f, x, y, color);
