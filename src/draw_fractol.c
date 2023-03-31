@@ -33,8 +33,6 @@ void	draw_mandelbrot(t_fractol *f)
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
 			tone_value = mandelbrot(complex_num, IMAX);
-			if (tone_value > 255)
-				tone_value = 255;
 			pixel_put(tone_value, f, x, y);
 			y++;
 		}
@@ -60,8 +58,6 @@ void	draw_julia(t_fractol *f)
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
 			tone_value = julia(complex_num, f->args, IMAX);
-			if (tone_value > 255)
-				tone_value = 255;
 			pixel_put(tone_value, f, x, y);
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 15:53:15 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 16:39:27 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERR_MSG "invalid arguments!"
 # define COMPLEX_R -0.3
 # define COMPLEX_I -0.63
-# define IMAX 400
+# define IMAX 100
 # define LIMIT 4.0
 
 typedef struct s_complex_number
