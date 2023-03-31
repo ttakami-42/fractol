@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 16:39:27 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 17:05:49 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "libft.h"
 # include "mlx.h"
 
-# define WIDTH 1000
-# define HIGHT 1000
+# define WIDTH 640
+# define HIGHT 640
 # define WINDOW_TITLE "fract-ol --ttakami xD"
 # define MANDE "Mandelbrot"
 # define JULIA "Julia"
