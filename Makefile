@@ -6,7 +6,7 @@
 #    By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:46:07 by ttakami           #+#    #+#              #
-#    Updated: 2023/03/31 12:28:34 by ttakami          ###   ########.fr        #
+#    Updated: 2023/03/31 14:19:02 by ttakami          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,11 @@ INC			= -Iinclude -I$(LIBFTDIR) -I$(MLXDIR)
 UNAME 		= $(shell uname -s)
 
 ifeq ($(UNAME), Darwin)
-	INC		+= -I/usr/X11/include
+	EXTRA	= -I/usr/X11/include
 	MLX		=-lmlx_Darwin
 	MLXFLAG	= -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
+	EXTRA	= -O3
 	MLX		= -lmlx
 	MLXFLAG	= -L/usr/lib -lXext -lX11 -lm
 endif
@@ -60,7 +61,7 @@ $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)
 	@[ -d $(OBJDIR) ]
 	@echo "$(YELLOW)      - Compiling :$(RESET)" $<
-	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INC) $(EXTRA) -c -o $@ $<
 
 $(LIBFT):
 	@make bonus --no-print-directory -sC $(LIBFTDIR)

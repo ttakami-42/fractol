@@ -20,7 +20,7 @@ void	draw_mandelbrot(t_fractol *f)
 	int			x;
 	int			y;
 	t_complex	complex_num;
-	int			value;
+	int			tone_value;
 
 	f->dx = (f->end_x - f->start_x) / (WIDTH);
 	f->dy = (f->end_y - f->start_y) / (HIGHT);
@@ -32,13 +32,14 @@ void	draw_mandelbrot(t_fractol *f)
 		{
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
-			value = mandelbrot(complex_num, IMAX);
-			pixel_put(value, f, x, y);
+			tone_value = mandelbrot(complex_num, IMAX);
+			if (tone_value > 255)
+				tone_value = 255;
+			pixel_put(tone_value, f, x, y);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 }
 
 void	draw_julia(t_fractol *f)
@@ -46,7 +47,7 @@ void	draw_julia(t_fractol *f)
 	int			x;
 	int			y;
 	t_complex	complex_num;
-	int			value;
+	int			tone_value;
 
 	f->dx = (f->end_x - f->start_x) / (WIDTH);
 	f->dy = (f->end_y - f->start_y) / (HIGHT);
@@ -58,13 +59,14 @@ void	draw_julia(t_fractol *f)
 		{
 			complex_num.real = f->start_x + x * f->dx;
 			complex_num.imag = f->start_y + y * f->dy;
-			value = julia(complex_num, f->args, IMAX);
-			pixel_put(value, f, x, y);
+			tone_value = julia(complex_num, f->args, IMAX);
+			if (tone_value > 255)
+				tone_value = 255;
+			pixel_put(tone_value, f, x, y);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 }
 
 static int	mandelbrot(t_complex c, int imax)
@@ -78,7 +80,7 @@ static int	mandelbrot(t_complex c, int imax)
 	while (i < imax)
 	{
 		z = sum_complex(mul_complex(z, z), c);
-		if (abs_complex(z) > 4.0)
+		if (abs_complex(z) > LIMIT)
 			return (i);
 		i++;
 	}
@@ -93,7 +95,7 @@ static int	julia(t_complex z, t_complex c, int imax)
 	while (i < imax)
 	{
 		z = sum_complex(mul_complex(z, z), c);
-		if (abs_complex(z) > 4.0)
+		if (abs_complex(z) > LIMIT)
 			return (i);
 		i++;
 	}

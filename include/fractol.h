@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 12:48:25 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 14:24:30 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "libft.h"
 # include "mlx.h"
 
-# define WIDTH 600
-# define HIGHT 600
+# define WIDTH 1000
+# define HIGHT 1000
 # define WINDOW_TITLE "fract-ol --ttakami xD"
 # define MANDE "Mandelbrot"
 # define JULIA "Julia"
@@ -34,7 +34,7 @@
 # define COMPLEX_R -0.3
 # define COMPLEX_I -0.63
 # define IMAX 400
-# define CONVERGENCE 4.0
+# define LIMIT 4.0
 
 typedef struct	s_complex_number
 {
