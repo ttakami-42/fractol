@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 01:27:13 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 14:53:24 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/03/31 15:51:02 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	pixel_put(int value, t_fractol *f, int x, int y)
 		color = create_trgb(64, n / 2, n, 0);
 	else if (value >= 16)
 		color = create_trgb(128, 250, 178, 102);
-	else 
+	else
 		color = create_trgb(128, 255, 178, 102);
 	my_mlx_pixel_put(f, x, y, color);
 }
