@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 17:05:49 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/01 02:38:32 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <X11/keysym.h>
 # include <string.h>
 # include "libft.h"
+# include "stdbool.h"
 # include "mlx.h"
 
 # define WIDTH 640
@@ -26,9 +27,9 @@
 # define JULIA "Julia"
 # define TYPE_MANDE 0
 # define TYPE_JULIA 1
-# define USAGE_LINE1 "usage: ./fractol <name> | Mandelbrot | Julia |"
-# define USAGE_LINE2 "if you want to create other julia set..."
-# define USAGE_LINE3 "change COMPLEX_R and COMPLEX_I value in fractol.h"
+# define USAGE_LINE1 "usage: ./fractol <name> <option>"
+# define USAGE_LINE2 "| name | Mandelbrot | Julia |"
+# define USAGE_LINE3 "if you choose Julia, you can add option (0 <= n <= 360 / degree)"
 # define ERR_MSG "invalid arguments!"
 # define COMPLEX_R -0.3
 # define COMPLEX_I -0.63
@@ -43,6 +44,7 @@ typedef struct s_complex_number
 
 typedef struct s_fractol_asset
 {
+	bool		need_draw;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			fractol_type;
@@ -65,6 +67,7 @@ void		puterr_and_exit(char *err_msg);
 int			validate_args(int argc, char *argv[], t_fractol *f);
 void		init_fractol(t_fractol *f);
 int			deinit_fractol(t_fractol *f);
+t_complex	cal_complex(int degree);
 t_complex	sum_complex(t_complex num1, t_complex num2);
 t_complex	mul_complex(t_complex num1, t_complex num2);
 double		abs_complex(t_complex num);
@@ -72,8 +75,11 @@ void		pixel_put(int value, t_fractol *f, int x, int y);
 void		draw_mandelbrot(t_fractol *f);
 void		draw_julia(t_fractol *f);
 void		set_mlx_hooks(t_fractol *f);
-int			key_hook(int keycode, t_fractol *f);
+void		zoom_in(t_fractol *f);
+void		zoom_out(t_fractol *f);
 int			expose_hook(t_fractol *f);
+int			key_hook(int keycode, t_fractol *f);
 int			mouse_hook(int mousecode, int x, int y, t_fractol *f);
+int			loop_hook(t_fractol *f);
 
 #endif
