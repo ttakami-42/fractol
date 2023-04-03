@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 22:15:41 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/03 03:30:23 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/04 02:17:24 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ t_complex	mul_complex(t_complex num1, t_complex num2)
 	return (mul);
 }
 
-double	abs_complex(t_complex num)
+double	abs_complex(double square)
 {
-	return (sqrt((num.real * num.real) + (num.imag * num.imag)));
+	if (square < 0)
+		return (-square);
+	return (square);
 }

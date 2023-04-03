@@ -51,7 +51,7 @@ static int	create_tone_value(t_complex z, t_complex c)
 	while (i < IMAX)
 	{
 		z = sum_complex(mul_complex(z, z), c);
-		if (abs_complex(z) > LIMIT)
+		if (abs_complex((z.real * z.real) + (z.imag * z.imag)) > LIMIT)
 			return (i);
 		i++;
 	}

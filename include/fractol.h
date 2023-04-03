@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/03 04:02:54 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/03 23:45:25 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define ERR_MSG "invalid arguments!"
 # define DEFAULT_DEG 90
 # define IMAX 100
-# define LIMIT 2.0
-# define WAIT 3000
+# define LIMIT 4.0
+# define WAIT 5000
 
 typedef struct s_complex_number
 {
@@ -77,7 +77,7 @@ int			deinit_fractol(t_fractol *f);
 t_complex	cal_complex(int degree);
 t_complex	sum_complex(t_complex num1, t_complex num2);
 t_complex	mul_complex(t_complex num1, t_complex num2);
-double		abs_complex(t_complex num);
+double		abs_complex(double square);
 void		pixel_put(int value, t_fractol *f, int x, int y);
 void		draw_fractol(t_fractol *f);
 void		set_mlx_hooks(t_fractol *f);
