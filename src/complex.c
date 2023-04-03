@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 22:15:41 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/01 02:06:47 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/03 03:30:23 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@ t_complex	cal_complex(int degree)
 	t_complex	num;
 	double 		rad;
 
-	rad = degree * M_PI / 180;
-	num.real = sin(rad);
-	num.imag = cos(rad);
+	if (degree == -1)
+	{
+		num.real = 0.0;
+		num.imag = 0.0;
+	}
+	else
+	{
+		rad = degree * M_PI / 180;
+		num.real = sin(rad);
+		num.imag = cos(rad);
+	}
 	return (num);
 }
 

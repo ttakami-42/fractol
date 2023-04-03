@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 21:37:10 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/01 02:45:34 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/03 04:00:02 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	init_fractol(t_fractol *f)
 	f->img_ptr = mlx_new_image(f->mlx_ptr, WIDTH, HIGHT);
 	f->data_addr = mlx_get_data_addr(f->img_ptr, &f->bits_per_pixel, \
 	&f->size_line, &f->endian);
-	f->start_x = -1.5;
-	f->start_y = 1.5;
-	f->end_x = 1.5;
-	f->end_y = -1.5;
+	f->start_x = -2.0;
+	f->start_y = 2.0;
+	f->end_x = 2.0;
+	f->end_y = -2.0;
+	f->zoom_level = 1;
+	f->c = cal_complex(f->extra_param);
 }
 
 int	deinit_fractol(t_fractol *f)

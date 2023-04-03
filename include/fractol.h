@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/01 02:38:32 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/03 04:02:54 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,26 @@
 # include "stdbool.h"
 # include "mlx.h"
 
-# define WIDTH 640
-# define HIGHT 640
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+
+
+# define WIDTH 800
+# define HIGHT 800
 # define WINDOW_TITLE "fract-ol --ttakami xD"
 # define MANDE "Mandelbrot"
 # define JULIA "Julia"
 # define TYPE_MANDE 0
 # define TYPE_JULIA 1
-# define USAGE_LINE1 "usage: ./fractol <name> <option>"
-# define USAGE_LINE2 "| name | Mandelbrot | Julia |"
-# define USAGE_LINE3 "if you choose Julia, you can add option (0 <= n <= 360 / degree)"
+# define USAGE_L1 "usage: ./fractol <name> <option>"
+# define USAGE_L2 "| name | Mandelbrot | Julia |"
+# define USAGE_L3 "if you choose Julia, you can add option (int, 0 <= n <= 360)"
 # define ERR_MSG "invalid arguments!"
-# define COMPLEX_R -0.3
-# define COMPLEX_I -0.63
+# define DEFAULT_DEG 90
 # define IMAX 100
-# define LIMIT 4.0
+# define LIMIT 2.0
+# define WAIT 3000
 
 typedef struct s_complex_number
 {
@@ -47,19 +52,21 @@ typedef struct s_fractol_asset
 	bool		need_draw;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
+	char		*data_addr;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
 	int			fractol_type;
-	t_complex	args;
+	int			extra_param;
+	t_complex	c;
 	double		start_x;
 	double		start_y;
 	double		end_x;
 	double		end_y;
 	double		dx;
 	double		dy;
-	void		*img_ptr;
-	char		*data_addr;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
+	int			zoom_level;
 }	t_fractol;
 
 void		print_usage(void);
@@ -72,8 +79,7 @@ t_complex	sum_complex(t_complex num1, t_complex num2);
 t_complex	mul_complex(t_complex num1, t_complex num2);
 double		abs_complex(t_complex num);
 void		pixel_put(int value, t_fractol *f, int x, int y);
-void		draw_mandelbrot(t_fractol *f);
-void		draw_julia(t_fractol *f);
+void		draw_fractol(t_fractol *f);
 void		set_mlx_hooks(t_fractol *f);
 void		zoom_in(t_fractol *f);
 void		zoom_out(t_fractol *f);

@@ -1,50 +1,73 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 01:27:13 by ttakami           #+#    #+#             */
-/*   Updated: 2023/03/31 16:55:21 by ttakami          ###   ########.fr       */
-/*                                                                            */
+/*			*/
+/*		:::	  ::::::::   */
+/*   pixel_put.c		:+:	  :+:	:+:   */
+/*			+:+ +:+		 +:+	 */
+/*   By: ttakami <ttakami@student.42tokyo.jp>	   +#+  +:+	   +#+		*/
+/*		+#+#+#+#+#+   +#+		   */
+/*   Created: 2023/03/31 01:27:13 by ttakami		   #+#	#+#			 */
+/*   Updated: 2023/03/31 16:55:21 by ttakami		  ###   ########.fr	   */
+/*			*/
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	create_trgb(int t, int r, int g, int b);
+static int	create_color(int value);
 static void	my_mlx_pixel_put(t_fractol *f, int x, int y, int color);
 
 void	pixel_put(int value, t_fractol *f, int x, int y)
 {
-	int	color;
+	int		color;
 
-	if (value >= 97)
-		color = create_trgb(8, 40, value * 2, value);
-	else if (value >= 85)
-		color = create_trgb(8, 40, value * 2, value * 2);
-	else if (value >= 80)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 70)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 60)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 50)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 40)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 30)
-		color = create_trgb(64, 40, value * 2, 20);
-	else if (value >= 10)
-		color = create_trgb(64, value, value * 2, 20);
-	else
-		color = create_trgb(128, 255, 178, 102);
+	color = create_color(value);
 	my_mlx_pixel_put(f, x, y, color);
 }
 
-static int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
+static int create_color(int value) {
+    int hue = 240;
+    double s = 1.0;
+    double l;
+	double val = value * 2.550;
+    if (val <= 128.0) {
+        l = val / 128.0;
+        hue = 240 - (hue - 120) * l;
+    } else {
+        l = (255.0 - val) / 127.0;
+        hue = 120 + (hue - 120) * l;
+    }
+    double c = (1 - fabs(2 * l - 1)) * s;
+    double x = c * (1 - fabs(fmod(hue / 60, 2) - 1));
+    double m = l - c / 2;
+    double r1, g1, b1;
+    if (hue >= 0 && hue < 60) {
+        r1 = c;
+        g1 = x;
+        b1 = 0;
+    } else if (hue >= 60 && hue < 120) {
+        r1 = x;
+        g1 = c;
+        b1 = 0;
+    } else if (hue >= 120 && hue < 180) {
+        r1 = 0;
+        g1 = c;
+        b1 = x;
+    } else if (hue >= 180 && hue < 240) {
+        r1 = 0;
+        g1 = x;
+        b1 = c;
+    } else if (hue >= 240 && hue < 300) {
+        r1 = x;
+        g1 = 0;
+        b1 = c;
+    } else {
+        r1 = c;
+        g1 = 0;
+        b1 = x;
+    }
+    int r = round((r1 + m) * 255);
+    int g = round((g1 + m) * 255);
+    int b = round((b1 + m) * 255);
+    return (r << 16 | g << 8 | b);
 }
 
 static void	my_mlx_pixel_put(t_fractol *f, int x, int y, int color)
