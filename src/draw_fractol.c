@@ -22,13 +22,13 @@ void	draw_fractol(t_fractol *f)
 	int			tone_value;
 
 	tone_value = 0;
-	f->dx = (f->end_x - f->start_x) / (WIDTH);
-	f->dy = (f->end_y - f->start_y) / (HIGHT);
+	f->dx = (f->end_x - f->start_x) / (IMG_WIDTH);
+	f->dy = (f->end_y - f->start_y) / (IMG_HIGHT);
 	x = 0;
-	while (x < WIDTH)
+	while (x < IMG_WIDTH)
 	{
 		y = 0;
-		while (y < HIGHT)
+		while (y < IMG_HIGHT)
 		{
 			z.real = f->start_x + x * f->dx;
 			z.imag = f->start_y + y * f->dy;

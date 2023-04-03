@@ -25,16 +25,16 @@ void	pixel_put(int value, t_fractol *f, int x, int y)
 
 static int create_color(int value)
 {
-	int hue = 240;
+	int hue = 0;
 	double s = 1.0;
 	double l;
 	double val = value * 2.550;
 	if (val <= 128.0) {
 		l = val / 128.0;
-		hue = 240 - (hue - 120) * l;
+		//hue = 240 - (hue - 120) * l;
 	} else {
 		l = (255.0 - val) / 127.0;
-		hue = 120 + (hue - 120) * l;
+		//hue = 120 + (hue - 120) * l;
 	}
 	double c = (1 - fabs(2 * l - 1)) * s;
 	double x = c * (1 - fabs(fmod(hue / 60, 2) - 1));
