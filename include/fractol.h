@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/04 03:09:51 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/06 02:50:37 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-# define WIN_WIDTH 720
+# define WIN_WIDTH 1000
 # define WIN_HIGHT 640
 # define IMG_WIDTH 640
 # define IMG_HIGHT 640
