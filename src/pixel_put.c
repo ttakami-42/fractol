@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 03:07:14 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/06 03:09:58 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/06 03:27:05 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,20 @@ static int	create_rgb(double h, double s, double l)
 	c = (1.0 - fabs(2.0 * l - 1.0)) * s;
 	x = c * (1.0 - fabs(fmod(h / 60.0, 2.0) - 1.0));
 	m = l - c / 2.0;
+	c += m;
+	x += m;
 	if (h >= 0.0 && h < 60.0)
-		return ((int)round((c + m) * 255.0) << 16 | (int)round((x + m) * 255.0) << 8 | (int)round(m * 255.0));
+		return ((int)round(c * 255.0) << 16 | (int)round(x * 255.0) << 8 | (int)round(m * 255.0));
 	else if (h >= 60.0 && h < 120.0)
-		return ((int)round((x + m) * 255.0) << 16 | (int)round((c + m) * 255.0) << 8 | (int)round(m * 255.0));
+		return ((int)round(x * 255.0) << 16 | (int)round(c * 255.0) << 8 | (int)round(m * 255.0));
 	else if (h >= 120.0 && h < 180.0)
-		return ((int)round(m * 255.0) << 16 | (int)round((c + m) * 255.0) << 8 | (int)round((x + m) * 255.0));
+		return ((int)round(m * 255.0) << 16 | (int)round(c * 255.0) << 8 | (int)round(x * 255.0));
 	else if (h >= 180.0 && h < 240.0)
-		return ((int)round(m * 255.0) << 16 | (int)round((x + m) * 255.0) << 8 | (int)round((c + m) * 255.0));
+		return ((int)round(m * 255.0) << 16 | (int)round(x * 255.0) << 8 | (int)round(c * 255.0));
 	else if (h >= 240.0 && h < 300.0)
-		return ((int)round((x + m) * 255.0) << 16 | (int)round(m * 255.0) << 8 | (int)round((c + m) * 255.0));
+		return ((int)round(x * 255.0) << 16 | (int)round(m * 255.0) << 8 | (int)round(c * 255.0));
 	else
-		return ((int)round((c + m) * 255.0) << 16 | (int)round(m * 255.0) << 8 | (int)round((x + m) * 255.0));
+		return ((int)round(c * 255.0) << 16 | (int)round(m * 255.0) << 8 | (int)round(x * 255.0));
 }
 
 static void	my_mlx_pixel_put(t_fractol *f, int x, int y, int color)
