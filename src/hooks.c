@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:17:02 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/03 03:33:23 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/08 02:27:31 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	mouse_hook(int mousecode, int x, int y, t_fractol *f)
 
 int	loop_hook(t_fractol *f)
 {	
-	static int	count = 0;
+	static int	count = 1;
 	static bool	is_drawing = false;
 
 	count++;
@@ -54,6 +54,6 @@ int	loop_hook(t_fractol *f)
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 	f->need_draw = false;
 	is_drawing = false;
-	count = 0;
+	count = 1;
 	return (0);
 }
