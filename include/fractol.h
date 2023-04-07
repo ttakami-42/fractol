@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/06 02:50:37 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/08 02:42:02 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define DEFAULT_DEG 90
 # define IMAX 100
 # define LIMIT 4.0
-# define WAIT 5000
+# define WAIT 3000
 
 typedef struct s_complex_number
 {
