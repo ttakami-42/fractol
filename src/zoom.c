@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 22:33:04 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/03 23:44:52 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:10:06 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ void	zoom_in(t_fractol *f)
 	if (f->zoom_level == 10000)
 		return ;
 	f->zoom_level++;
-	scale = pow(0.95, f->zoom_level);
+	if (f->zoom_level == 0)
+		scale = 1.0;
+	else if (f->zoom_level < 0)
+		scale = pow(1.05, -(f->zoom_level));
+	else
+		scale = pow(0.95, f->zoom_level);
 	f->start_x = scale * -2.0;
 	f->start_y = scale * 2.0;
 	f->end_x = scale * 2.0;
