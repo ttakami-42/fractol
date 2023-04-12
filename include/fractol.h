@@ -61,6 +61,8 @@ typedef struct s_fractol_asset
 	int			fractol_type;
 	int			extra_param;
 	t_complex	c;
+	double		centre_x;
+	double		centre_y;
 	double		start_x;
 	double		start_y;
 	double		end_x;

@@ -22,6 +22,14 @@ int	key_hook(int keycode, t_fractol *f)
 {
 	if (keycode == XK_Escape)
 		deinit_fractol(f);
+	else if (keycode == XK_w || keycode == XK_W)
+		pan_up();
+	else if (keycode == XK_a || keycode == XK_A)
+		pan_left();
+	else if (keycode == XK_s || keycode == XK_S)
+		pan_right();
+	else if (keycode == XK_d || keycode == XK_D)
+		pan_down();
 	return (0);
 }
 

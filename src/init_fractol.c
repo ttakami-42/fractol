@@ -23,6 +23,8 @@ void	init_fractol(t_fractol *f)
 	f->start_y = 2.0;
 	f->end_x = 2.0;
 	f->end_y = -2.0;
+	f->centre_x = 0.0;
+	f->centre_y = 0.0;
 	f->zoom_level = 1;
 	f->c = cal_complex(f->extra_param);
 }
