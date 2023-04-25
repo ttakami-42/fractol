@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:15:27 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/08 02:42:02 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/04/26 02:33:24 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define TYPE_MANDE 0
 # define TYPE_JULIA 1
 # define USAGE_L1 "usage: ./fractol <name> <option>"
-# define USAGE_L2 "| name | Mandelbrot | Julia |"
-# define USAGE_L3 "if you choose Julia, you can add option (int, 0 <= n <= 360)"
+# define USAGE_L2 "     : ./fractol Mandelbrot"
+# define USAGE_L3 "     : ./fractol Julia <option (int, 0 <= n <= 360)>"
 # define ERR_MSG "invalid arguments!"
 # define DEFAULT_DEG 90
 # define IMAX 100
@@ -86,6 +86,10 @@ void		draw_fractol(t_fractol *f);
 void		set_mlx_hooks(t_fractol *f);
 void		zoom_in(t_fractol *f);
 void		zoom_out(t_fractol *f);
+void		pan_up(t_fractol *f);
+void		pan_down(t_fractol *f);
+void		pan_left(t_fractol *f);
+void		pan_right(t_fractol *f);
 int			expose_hook(t_fractol *f);
 int			key_hook(int keycode, t_fractol *f);
 int			mouse_hook(int mousecode, int x, int y, t_fractol *f);

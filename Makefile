@@ -6,7 +6,7 @@
 #    By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:46:07 by ttakami           #+#    #+#              #
-#    Updated: 2023/04/01 02:08:15 by ttakami          ###   ########.fr        #
+#    Updated: 2023/04/26 02:18:29 by ttakami          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS		=   main.c \
 				draw_fractol.c \
 				hooks.c \
 				zoom.c \
+				pan.c \
 				set_mlx_hooks.c
 
 OBJDIR		= obj
