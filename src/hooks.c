@@ -6,7 +6,7 @@
 /*   By: ttakami <ttakami@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:17:02 by ttakami           #+#    #+#             */
-/*   Updated: 2023/04/26 02:28:06 by ttakami          ###   ########.fr       */
+/*   Updated: 2023/07/11 14:03:59 by ttakami          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, t_fractol *f)
 		pan_left(f);
 	else if (keycode == XK_d || keycode == XK_D)
 		pan_right(f);
-	else if (keycode == XK_s || keycode == XK_s)
+	else if (keycode == XK_s || keycode == XK_S)
 		pan_down(f);
 	return (0);
 }
